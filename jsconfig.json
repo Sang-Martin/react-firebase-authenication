@@ -1,0 +1,7 @@
+// dont declare ./, the default source come from here
+{
+    "compilerOptions": {
+      "baseUrl": "src"
+    },
+    "include": ["src"]
+}
