@@ -1,8 +1,10 @@
 import React from 'react'
 
-const AddProductPanel = () => {
+const AddProductPanel = ({title}) => {
   return (
-    <div>AddProductPanel</div>
+    <div>
+      <h2>{title || "Display Panel"}</h2>
+    </div>
   )
 }
 

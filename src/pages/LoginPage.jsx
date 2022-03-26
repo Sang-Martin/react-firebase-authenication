@@ -1,43 +1,44 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// import { signInWithEmailAndPassword } from "firebase/auth";
-// import {auth} from "../libs/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import {auth} from '../libs/firebase'
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+
 
 const LoginPage = () => {
   const navigator = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const notify = (error) => toast.error(error.code,{
-  //   position: "top-center",
-  //   autoClose: 3000,
-  //   hideProgressBar: false,
-  //   closeOnClick: true,
-  //   pauseOnHover: true,
-  //   draggable: true,
-  //   progress: undefined,
-  // })
+  const notify = (error) => toast.error(error,{
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  })
 
   function onLoginRequest(e) {
     e.preventDefault();
-    navigator("/dashboard");
     
-    // signInWithEmailAndPassword(auth, email, password)
-    //   .then((userCrediental) => {
-    //     navigator("/dashboard");
-    //   })
-    //   .catch((error) => {
-    //     notify(error)
-    //   });
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        navigator("/dashboard");
+      })
+      .catch((error) => {
+        notify('User not found')
+      });
   }
 
   return (
     <div className=" min-h-screen flex justify-center items-center ">
       {/* display toast */}
-      {/* <ToastContainer/> */}
+      <ToastContainer/>
 
       <div className="flex rounded-lg bg-slate-200 w-3/4 flex-col max-w-screen-lg md:flex-row m-auto p-1 md:p-10">
         {/* image */}
